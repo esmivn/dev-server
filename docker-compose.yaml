@@ -1,0 +1,23 @@
+---
+version: "2.1"
+
+services:
+  code-server:
+    image: dev-server:latest     # <-- your custom image built from the Dockerfile
+    container_name: dev-server
+    environment:
+      - PUID=1000                        # match your host user id
+      - PGID=1000                        # match your host group id
+      - TZ=Etc/UTC                       # set your timezone, e.g. Europe/London
+      - PASSWORD=password                # optional: simple password auth
+      # - HASHED_PASSWORD=               # optional: overrides PASSWORD
+      # - SUDO_PASSWORD=password         # optional: enable sudo in terminal
+      # - SUDO_PASSWORD_HASH=            # optional: hashed sudo password
+      # - PROXY_DOMAIN=code.example.com  # optional: if using a reverse proxy
+      - DEFAULT_WORKSPACE=/config/workspace  # optional: default folder opened by code-server
+    volumes:
+      - ./config:/config                 # config, extensions, settings, etc.
+      - ./projects:/config/workspace     # your code projects
+    ports:
+      - 8443:8443                        # web UI port
+    restart: unless-stopped
