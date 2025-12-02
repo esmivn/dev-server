@@ -11,8 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     make \
     g++ \
+    rustc \
+    cargo \
+    cmake \
     curl \
     git \
+    git-lfs \
     wget \
     pkg-config \
     ca-certificates \
@@ -42,6 +46,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ripgrep \
     fd-find \
     jq \
+    ffmpeg \
+    s3cmd \
+    # networking + diagnostics
+    iputils-ping \
+    netcat-openbsd \
+    rsync \
+    htop \
+    vim \
+    traceroute \
+    iperf3 \
+    nmap \
+    ncdu \
+    sysstat \
+    zip \
+    unzip \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
