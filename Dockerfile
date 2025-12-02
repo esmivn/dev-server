@@ -120,6 +120,14 @@ RUN bash -lc " \
     ln -sf \"\$(dirname \"\$node_path\")/npx\" /usr/local/bin/npx \
 "
 
+# AI CLIs: Codex + Claude Code
+RUN bash -lc " \
+    export NVM_DIR=/usr/local/nvm; \
+    . \"$NVM_DIR/nvm.sh\"; \
+    npm install -g @openai/codex \
+" \
+ && curl -fsSL https://claude.ai/install.sh | bash
+
 # Auto-load nvm for interactive shells inside the container
 RUN echo 'export NVM_DIR=/usr/local/nvm' > /etc/profile.d/nvm.sh \
  && echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> /etc/profile.d/nvm.sh
